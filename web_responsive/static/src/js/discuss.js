@@ -159,7 +159,7 @@ odoo.define("web_responsive.Discuss", function(require) {
          * @returns {Promise}
          */
         _updateContent: function(type) {
-            const inMailbox = type.startsWith("mailbox_");
+            const inMailbox = typeof type === "string" ? type.startsWith("mailbox_") : false;
             if (!inMailbox && this._isInInboxTab()) {
                 // We're leaving the inbox, so store the thread scrolltop
                 this._storeThreadState();
@@ -208,7 +208,7 @@ odoo.define("web_responsive.Discuss", function(require) {
         },
 
         _updateButtons: function(type) {
-            const inMailbox = type.startsWith("mailbox_");
+            const inMailbox = typeof type === "string" ? type.startsWith("mailbox_") : false;
             // Update control panel
             this.$buttons
                 .find("button")
